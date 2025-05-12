@@ -16,10 +16,6 @@ public class LoanAuditService {
     }
 
     public List<LoanAuditEntity> findAllAuditLoans() {
-        List<LoanAuditEntity> allData = repository.findAll();
-        if (allData.isEmpty()) {
-            throw new IllegalArgumentException("No loans found.");
-        }
-        return allData;
+        return repository.findAll();
     }
 }
