@@ -5,17 +5,21 @@ import com.ngtai.library_api.persistence.dao.impl.BookDAOImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import com.ngtai.library_api.persistence.entity.BookEntity;
 
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @ActiveProfiles("test")
 class BookDAOTest {
+
+
+    @Value("${spring.flyway.locations}")
+    String flywayLocation;
 
     @Autowired
     private BookDAOImpl repository;
@@ -44,5 +48,7 @@ class BookDAOTest {
         assertEquals("Clean Code", loaded.getTitle());
         assertEquals("Robert C. Martin", loaded.getAuthor());
         assertFalse(loaded.getLoaned());
+
+        System.out.println(flywayLocation);
     }
 }
